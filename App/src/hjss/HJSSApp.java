@@ -17,7 +17,28 @@ public class HJSSApp {
         learners = new ArrayList<>();
         coaches = new ArrayList<>();
         timetable = new Timetable();
-        // Initialize coaches and pre-registered learners
+        initializeData();// Initialize coaches and pre-registered learners
+    }
+
+    private void initializeData() {
+        // Add coaches
+        Coach coach1 = new Coach("John");
+        Coach coach2 = new Coach("Emma");
+        Coach coach3 = new Coach("Michael");
+        coaches.add(coach1);
+        coaches.add(coach2);
+        coaches.add(coach3);
+
+        // Add pre-registered learners
+        Learner learner1 = new Learner("Alice", Gender.FEMALE, 8, "1234567890", 2);
+        Learner learner2 = new Learner("Bob", Gender.MALE, 6, "9876543210", 1);
+        learners.add(learner1);
+        learners.add(learner2);
+
+        // Initialize timetable with lessons
+        timetable.addLesson(new Lesson(DayOfWeek.MONDAY, LocalTime.of(16, 0), LocalTime.of(17, 0), 1, coach1));
+        timetable.addLesson(new Lesson(DayOfWeek.MONDAY, LocalTime.of(17, 0), LocalTime.of(18, 0), 2, coach2));
+        // Add more lessons as needed
     }
 
     public void main() {
