@@ -5,6 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+enum BookingStatus {
+    BOOKED, CANCELED, ATTENDED
+}
+
 public class Lesson {
     private DayOfWeek day;
     private LocalTime startTime;
