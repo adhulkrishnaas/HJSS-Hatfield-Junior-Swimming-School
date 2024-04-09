@@ -30,6 +30,13 @@ public class Learner {
         bookings.add(booking);
     }
 
+    public Booking getBookingById(int bookingId) {
+        return bookings.stream()
+                .filter(booking -> booking.getId() == bookingId)
+                .findFirst()
+                .orElse(null);
+    }
+
     public void changeBooking(Booking booking, Lesson newLesson) {
         // Implement logic to change the booking
     }
