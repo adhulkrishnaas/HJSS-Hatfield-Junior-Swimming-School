@@ -34,6 +34,9 @@ public class Coach {
 
         return totalRating / reviews.size();
     }
+    public String getName() {
+        return name;
+    }
 
     // Getters and setters
 }

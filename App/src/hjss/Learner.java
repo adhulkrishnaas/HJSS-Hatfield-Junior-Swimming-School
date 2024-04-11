@@ -1,7 +1,7 @@
 package hjss;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Learner {
     private String name;
@@ -23,7 +23,13 @@ public class Learner {
     }
 
     public boolean canBookLesson(Lesson lesson) {
-        return lesson.getGrade() <= currentGrade + 1;
+        int lessonGrade = lesson.getGrade();
+        return lessonGrade <= currentGrade + 1 && lessonGrade >= currentGrade;
+    }
+
+    public boolean hasBookedLesson(Lesson lesson) {
+        return bookings.stream()
+                .anyMatch(booking -> booking.getLesson().equals(lesson));
     }
 
     public void addBooking(Booking booking) {
@@ -38,7 +44,13 @@ public class Learner {
     }
 
     public void changeBooking(Booking booking, Lesson newLesson) {
-        // Implement logic to change the booking
+        if (canBookLesson(newLesson) && !hasBookedLesson(newLesson)) {
+            booking.getLesson().removeLearner(this);
+            booking.setLesson(newLesson);
+            newLesson.addLearner(this);
+        } else {
+            System.out.println("You cannot book this lesson due to grade level restrictions or you have already booked this lesson.");
+        }
     }
 
     public void cancelBooking(Booking booking) {
@@ -48,13 +60,32 @@ public class Learner {
 
     public void attendLesson(Booking booking) {
         booking.setStatus(BookingStatus.ATTENDED);
-        // Update the learner's current grade if needed
+    }
+
+    public void updateGradeLevel(int attendedGrade) {
+        if (attendedGrade > currentGrade) {
+            currentGrade = attendedGrade;
+            System.out.println("Your current grade level has been updated to " + currentGrade);
+        }
     }
 
     public void writeReview(Lesson lesson, Review review) {
         reviews.add(review);
         lesson.getCoach().addReview(review);
     }
+
+    public List<Booking> getBookings(BookingStatus status) {
+        return bookings.stream()
+                .filter(booking -> booking.getStatus() == status)
+                .collect(Collectors.toList());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Getters and setters for other attributes
+}
 
     // Getters and setters
 }

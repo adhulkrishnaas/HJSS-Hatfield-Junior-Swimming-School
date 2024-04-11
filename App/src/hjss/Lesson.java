@@ -26,6 +26,7 @@ public class Lesson {
         this.bookedLearners = new ArrayList<>();
     }
 
+
     public boolean isAvailable() {
         return bookedLearners.size() < 4;
     }
@@ -36,6 +37,31 @@ public class Lesson {
 
     public void removeLearner(Learner learner) {
         bookedLearners.remove(learner);
+    }
+
+    public DayOfWeek getDay() {
+        return day;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public List<Learner> getBookedLearners() {
+        return bookedLearners;
+    }
     }
 
     // Getters and setters
