@@ -8,6 +8,9 @@ public class Review {
         this.description = description;
         this.rating = rating;
     }
+    public int getRating() {
+        return rating;
+    }
 
     // Getters and setters
 }

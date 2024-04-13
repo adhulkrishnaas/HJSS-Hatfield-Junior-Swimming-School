@@ -9,6 +9,7 @@ enum BookingStatus {
     BOOKED, CANCELED, ATTENDED
 }
 
+
 public class Lesson {
     private DayOfWeek day;
     private LocalTime startTime;
@@ -24,8 +25,8 @@ public class Lesson {
         this.grade = grade;
         this.coach = coach;
         this.bookedLearners = new ArrayList<>();
+        coach.addLesson(this);
     }
-
 
     public boolean isAvailable() {
         return bookedLearners.size() < 4;
@@ -62,7 +63,16 @@ public class Lesson {
     public List<Learner> getBookedLearners() {
         return bookedLearners;
     }
-    }
 
-    // Getters and setters
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "day=" + day +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", grade=" + grade +
+                ", coach=" + coach.getName() +
+                ", bookedLearners=" + bookedLearners.size() + "/4" +
+                '}';
+    }
 }

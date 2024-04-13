@@ -41,9 +41,74 @@ public class HJSSApp {
         // Add more lessons as needed
     }
 
-    public void main() {
-        // Implement the main program logic and user interface
+    public static void main(String[] args) {
+        HJSSApp app = new HJSSApp();
+        app.runApp();
     }
+
+    public void runApp() {
+        boolean running = true;
+        while (running) {
+            System.out.println("Choose an option:");
+            System.out.println("1. Book a lesson");
+            System.out.println("2. Change/Cancel a booking");
+            System.out.println("3. Attend a lesson");
+            System.out.println("4. Generate learner report");
+            System.out.println("5. Generate coach report");
+            System.out.println("6. Register a new learner");
+            System.out.println("0. Exit");
+
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the learner's name:");
+                    String learnerName = scanner.next();
+                    Learner learner = getLearnerByName(learnerName);
+                    if (learner != null) {
+                        bookLesson(learner);
+                    } else {
+                        System.out.println("Learner not found.");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter the learner's name:");
+                    learnerName = scanner.next();
+                    learner = getLearnerByName(learnerName);
+                    if (learner != null) {
+                        changeOrCancelBooking(learner);
+                    } else {
+                        System.out.println("Learner not found.");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Enter the learner's name:");
+                    learnerName = scanner.next();
+                    learner = getLearnerByName(learnerName);
+                    if (learner != null) {
+                        attendLesson(learner);
+                    } else {
+                        System.out.println("Learner not found.");
+                    }
+                    break;
+                case 4:
+                    //generateLearnerReport();
+                    break;
+                case 5:
+                    //generateCoachReport();
+                    break;
+                case 6:
+                    //registerLearner();
+                    break;
+                case 0:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+
 
     public void bookLesson(Learner learner) {
         System.out.println("How would you like to view the timetable?");
@@ -186,6 +251,43 @@ public class HJSSApp {
             System.out.println("You cannot book this lesson due to grade level restrictions or you have already booked this lesson.");
         }
     }
+    public void cancelBooking(Learner learner) {
+        System.out.println("Need to tbe implemented");
+
+    }
+
+    public void generateLearnerReport(Learner learner){
+        System.out.println("Need to tbe implemented");
+
+
+    }
+    public void generateCoachReport(Learner learner){
+        System.out.println("Need to tbe implemented");
+
+
+    }
+
+    public void registerLearner(Learner learner){
+        System.out.println("Need to tbe implemented");
+
+
+    }
+    public void attendLesson(Learner learner){
+        System.out.println("Need to tbe implemented");
+
+
+    }
+    private Learner getLearnerByName(String name) {
+        // Implement this method to retrieve the Learner object from the learners list based on the provided name
+        // Return null if the learner is not found
+        for (Learner learner : learners) {
+            if (learner.getName().equalsIgnoreCase(name)) {
+                return learner;
+            }
+        }
+        return null;
+    }
+
 
     // Implement other methods like changeBooking(), cancelBooking(), attendLesson(), generateLearnerReport(), generateCoachReport(), and registerLearner()
 

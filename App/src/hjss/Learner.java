@@ -87,5 +87,3 @@ public class Learner {
     // Getters and setters for other attributes
 }
 
-    // Getters and setters
-}
