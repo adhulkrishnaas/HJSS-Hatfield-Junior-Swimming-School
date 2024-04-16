@@ -173,7 +173,7 @@ public class HJSSApp {
             System.out.println("You cannot book this lesson due to grade level restrictions or you have already booked this lesson.");
         }
     }
-    public void changeOrCancelBooking(Learner learner) {
+    public void changeOrCancelBooking(Learner Learner) {
         System.out.println("1. Change a booking");
         System.out.println("2. Cancel a booking");
         int choice = scanner.nextInt();
