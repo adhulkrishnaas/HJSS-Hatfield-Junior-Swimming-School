@@ -265,15 +265,45 @@ public class HJSSApp {
         System.out.println("Booking cancelled successfully!");
     }
 
-    public void generateLearnerReport(Learner learner){
-        System.out.println("Need to tbe implemented");
+    public void generateLearnerReport() {
+        System.out.println("Enter the month number (1-12):");
+        int month = scanner.nextInt();
+        System.out.println("Monthly Learner Report for " + Month.of(month));
+        for (Learner learner : learners) {
+            System.out.println("Learner: " + learner.getName());
+            System.out.println("Booked Lessons:");
+            List<Booking> bookedLessons = learner.getBookings(BookingStatus.BOOKED);
+            for (Booking booking : bookedLessons) {
+                System.out.println(booking.getLesson());
+            }
+            System.out.println("Number of booked lessons: " + bookedLessons.size());
+            System.out.println("Canceled Lessons:");
+            List<Booking> canceledLessons = learner.getBookings(BookingStatus.CANCELED);
+            for (Booking booking : canceledLessons) {
+                System.out.println(booking.getLesson());
+            }
+            System.out.println("Number of canceled lessons: " + canceledLessons.size());
 
-
+            System.out.println("Attended Lessons:");
+            List<Booking> attendedLessons = learner.getBookings(BookingStatus.ATTENDED);
+            for (Booking booking : attendedLessons) {
+                System.out.println(booking.getLesson());
+            }
+            System.out.println("Number of attended lessons: " + attendedLessons.size());
+            System.out.println();
+        }
     }
-    public void generateCoachReport(Learner learner){
-        System.out.println("Need to tbe implemented");
+    public void generateCoachReport() {
+        System.out.println("Enter the month number (1-12):");
+        int month = scanner.nextInt();
 
-
+        System.out.println("Monthly Coach Report for " + Month.of(month));
+        for (Coach coach : coaches) {
+            System.out.println("Coach: " + coach.getName());
+            double averageRating = coach.getAverageRating();
+            System.out.println("Average Rating: " + averageRating);
+            System.out.println();
+        }
     }
 
     public void registerLearner(Learner learner){
