@@ -252,8 +252,17 @@ public class HJSSApp {
         }
     }
     public void cancelBooking(Learner learner) {
-        System.out.println("Need to tbe implemented");
+        System.out.println("Enter the booking ID to cancel:");
+        int bookingId = scanner.nextInt();
 
+        Booking booking = learner.getBookingById(bookingId);
+        if (booking == null) {
+            System.out.println("Invalid booking ID!");
+            return;
+        }
+
+        learner.cancelBooking(booking);
+        System.out.println("Booking cancelled successfully!");
     }
 
     public void generateLearnerReport(Learner learner){
