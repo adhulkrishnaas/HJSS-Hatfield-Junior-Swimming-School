@@ -306,16 +306,62 @@ public class HJSSApp {
         }
     }
 
-    public void registerLearner(Learner learner){
-        System.out.println("Need to tbe implemented");
+    public void registerLearner() {
+        System.out.println("Enter learner name:");
+        String name = scanner.next();
 
+        System.out.println("Enter learner gender (MALE/FEMALE):");
+        Gender gender = Gender.valueOf(scanner.next().toUpperCase());
 
+        System.out.println("Enter learner age:");
+        int age = scanner.nextInt();
+
+        System.out.println("Enter emergency contact number:");
+        String emergencyContact = scanner.next();
+
+        System.out.println("Enter current grade level (1-5):");
+        int currentGrade = scanner.nextInt();
+
+        if (age < 4 || age > 11) {
+            System.out.println("Invalid age. Learners must be between 4 and 11 years old.");
+            return;
+        }
+
+        Learner newLearner = new Learner(name, gender, age, emergencyContact, currentGrade);
+        learners.add(newLearner);
+        System.out.println("Learner registered successfully!");
     }
-    public void attendLesson(Learner learner){
-        System.out.println("Need to tbe implemented");
 
+    public void attendLesson(Learner learner) {
+        System.out.println("Enter the booking ID to attend the lesson:");
+        int bookingId = scanner.nextInt();
 
+        Booking booking = learner.getBookingById(bookingId);
+        if (booking == null) {
+            System.out.println("Invalid booking ID!");
+            return;
+        }
+
+        if (booking.getStatus() == BookingStatus.ATTENDED) {
+            System.out.println("You have already attended this lesson.");
+            return;
+        }
+
+        learner.attendLesson(booking);
+        learner.updateGradeLevel(booking.getLesson().getGrade());
+
+        System.out.println("Enter your review for the lesson:");
+        String review = scanner.next();
+
+        System.out.println("Enter your rating (1-5):");
+        int rating = scanner.nextInt();
+
+        Review newReview = new Review(review, rating);
+        learner.writeReview(booking.getLesson(), newReview);
+
+        System.out.println("Lesson attended successfully!");
     }
+
     private Learner getLearnerByName(String name) {
         // Implement this method to retrieve the Learner object from the learners list based on the provided name
         // Return null if the learner is not found
