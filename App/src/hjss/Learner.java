@@ -84,6 +84,14 @@ public class Learner {
         return name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public int getGradeLevel() {
+        return currentGrade;
+    }
+
     // Getters and setters for other attributes
 }
 

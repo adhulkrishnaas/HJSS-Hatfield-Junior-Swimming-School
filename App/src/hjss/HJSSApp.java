@@ -91,13 +91,13 @@ public class HJSSApp {
                     }
                     break;
                 case 4:
-                    //generateLearnerReport();
+                    generateLearnerReport();
                     break;
                 case 5:
-                    //generateCoachReport();
+                    generateCoachReport();
                     break;
                 case 6:
-                    //registerLearner();
+                    registerLearner();
                     break;
                 case 0:
                     running = false;
